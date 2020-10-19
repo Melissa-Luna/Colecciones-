@@ -39,6 +39,7 @@ public class Deck {
     public void shuffle(){ // se revuelven las cartas
         Collections.shuffle(juegoDmazo);
         System.out.println("Se mezclo el Deck");
+
     }
 
     public void head(){ //mostrar la primera carta del deck

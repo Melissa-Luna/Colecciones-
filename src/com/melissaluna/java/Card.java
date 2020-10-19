@@ -53,7 +53,7 @@ public class Card {//este el metodo para definir el objeto carta
 
    @Override
     public String toString() {
-        return "valor= " +valor + ", palo= " + palo + ", color = " + color;
+        return "valor= " +valor + ", palo= " + palo + ", color= " + color;
 
     }
 }
