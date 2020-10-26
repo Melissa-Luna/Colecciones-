@@ -10,10 +10,13 @@ public class Deck {
     private HashMap<String,String> palos = new HashMap<String, String>();
     private ArrayList<Card> juegoDmazo = new ArrayList<Card>(); // se refiere al juego de mazo
     private String strFormat = "Quedan %s";
+    int a;
 
     public ArrayList<Card> getJuegoDmazo(){ //este metodo llama a la clase carta
         return juegoDmazo;
     }
+
+
 
     public void mazo(){ // se definen los cuatro pares atributos
         palos.put("Diamante", "Rojo");
@@ -42,33 +45,47 @@ public class Deck {
 
     }
 
-    public void head(){ //mostrar la primera carta del deck
+    public void head()  throws Exception { //mostrar la primera carta del deck
         var card = juegoDmazo.get(juegoDmazo.size()-1);
         juegoDmazo.remove(card);
         System.out.println(card.toString());
         System.out.println(String.format(strFormat,juegoDmazo.size()));
+        a = juegoDmazo.size();
+        if (a == 0) {
+            throw new Exception("Se acabaron las cartas");
+        }
+
     }
 
     private Card randomCard(){ // aleatoriamente
-        var rd = (int)Math.floor(Math.random()*(1-juegoDmazo.size()+1)+juegoDmazo.size());
+        var max = juegoDmazo.size()-1;
+        var rd = (int)Math.floor(Math.random()*(0-max +1 )+max);
         return juegoDmazo.get(rd);
     }
 
-    public void pick(){ //sacar una carta random del mazo
+    public void pick() throws Exception { //sacar una carta random del mazo
         var card = randomCard();
         juegoDmazo.remove(card);
         System.out.println(card.toString());
         System.out.println(String.format(strFormat, juegoDmazo.size()));
+        a = juegoDmazo.size();
+        if (a == 0) {
+            throw new Exception("Se acabaron las cartas");
+        }
     }
 
     private void printHand(ArrayList<Card> cards){
         for (var card: cards) System.out.println(card.toString());
     }
 
-    public void hand(){ //sacar 5 cartas
+    public void hand() throws  Exception{ //sacar 5 cartas
         if (juegoDmazo.size()  <= 5){
             for (var card: juegoDmazo){
                 printHand(juegoDmazo);
+                a = juegoDmazo.size();
+                if (a <=5){
+                    throw new Exception("Se acabaron las cartas");
+                }
             }
         }else {
             var cards = new ArrayList<Card>();
@@ -81,6 +98,7 @@ public class Deck {
             printHand(cards);
             System.out.println(String.format(strFormat, juegoDmazo.size()));
         }
+
     }
 
 }
